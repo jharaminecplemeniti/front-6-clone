@@ -1,6 +1,7 @@
 import BlogBox from "../components/BlogBox";
 import Work from "../components/Work";
 import Heading3 from "../components/Heading3";
+import Products from "../components/vjezbe/Products";
 
 function Home(){
 
@@ -21,6 +22,7 @@ function Home(){
         </div>
       </div>
 
+      <Products />
 
 
       <div class="recent-post">
