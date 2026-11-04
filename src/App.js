@@ -13,6 +13,10 @@ import Works from './pages/Works';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 
+// Vježbe
+import Recipes from "./components/vjezbe/Recipes";
+import Posts from "./components/vjezbe/Posts";
+
 
 function App() {
   return (
@@ -24,6 +28,8 @@ function App() {
         <Route path="/works" element={<Works />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/Recipes" element={<Recipes />} />
+        <Route path="/Posts" element={<Posts />} />
       </Routes>
 
       <Footer />
