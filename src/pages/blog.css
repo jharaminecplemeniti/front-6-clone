@@ -1,0 +1,244 @@
+
+:root {
+  --blog-butter: #f5edca;
+  --blog-butter-light: #fbf8eb;
+  --blog-cream: #fffdf6;
+  --blog-olive: #687247;
+  --blog-olive-dark: #39452b;
+  --blog-olive-soft: #e9ebdd;
+  --blog-ink: #292c22;
+  --blog-muted: #77796d;
+  --blog-border: #e8e3d1;
+  --blog-white: #ffffff;
+}
+
+.blog-page,
+.container:has(.form-select) {
+  color: var(--blog-ink);
+  font-family: "DM Sans", "Segoe UI", Arial, sans-serif;
+}
+
+/* Glavni okvir */
+.container:has(.form-select) {
+  width: min(1160px, calc(100% - 40px));
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 30px 0 90px;
+}
+
+/* Naslov */
+.container:has(.form-select) > h1.display-4 {
+  position: relative;
+  margin: 0 0 42px !important;
+  padding: 48px 20px 42px !important;
+  border-radius: 0 0 34px 34px;
+  background: var(--blog-butter-light);
+  color: var(--blog-olive-dark);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(42px, 6vw, 66px);
+  font-weight: 700;
+  letter-spacing: -1.8px;
+  line-height: 1.08;
+}
+
+.container:has(.form-select) > h1.display-4::after {
+  content: "DOBRO DOŠLI U NAŠU KUHINJU";
+  display: block;
+  margin-top: 17px;
+  color: var(--blog-olive);
+  font-family: "DM Sans", "Segoe UI", Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+/* Red filtera */
+.container:has(.form-select) > .row:first-of-type {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0 0 32px;
+}
+
+.container:has(.form-select) > .row:first-of-type > [class*="col-"] {
+  width: auto;
+  flex: 0 1 260px;
+  padding: 0;
+}
+
+.form-select {
+  min-height: 48px;
+  padding: 11px 42px 11px 17px;
+  border: 1px solid var(--blog-border);
+  border-radius: 28px;
+  background-color: var(--blog-white);
+  color: var(--blog-olive-dark);
+  box-shadow: none;
+  font-size: 13px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.form-select:focus {
+  border-color: var(--blog-olive);
+  box-shadow: 0 0 0 3px rgba(104, 114, 71, .13);
+  outline: none;
+}
+
+/* Grid recepata */
+.container:has(.form-select) > .row:nth-of-type(2) {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px 24px;
+  margin: 0;
+}
+
+.container:has(.form-select) > .row:nth-of-type(2) > [class*="col-"] {
+  width: auto;
+  max-width: none;
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--blog-border);
+  border-radius: 13px;
+  background: var(--blog-white);
+  box-shadow: 0 8px 24px rgba(57, 69, 43, .055);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.container:has(.form-select) > .row:nth-of-type(2) > [class*="col-"]:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 34px rgba(57, 69, 43, .12);
+}
+
+/* Naslov recepta */
+.container:has(.form-select) .row:nth-of-type(2) h2 {
+  margin: 0;
+  padding: 23px 23px 10px;
+  color: var(--blog-olive-dark);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.35px;
+}
+
+/* Sažetak iz WordPressa */
+.container:has(.form-select) .row:nth-of-type(2) > [class*="col-"] > div {
+  padding: 0 23px 17px;
+  color: var(--blog-muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.container:has(.form-select) .row:nth-of-type(2) > [class*="col-"] > div p {
+  margin: 0;
+}
+
+/* Link "Pročitaj više" */
+.container:has(.form-select) .row:nth-of-type(2) a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 23px 23px;
+  padding: 11px 16px;
+  border-radius: 24px;
+  background: var(--blog-olive-dark);
+  color: var(--blog-white);
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.container:has(.form-select) .row:nth-of-type(2) a::after {
+  content: "↗";
+  color: var(--blog-butter);
+  font-size: 15px;
+}
+
+.container:has(.form-select) .row:nth-of-type(2) a:hover {
+  transform: translateY(-2px);
+  background: var(--blog-olive);
+  color: var(--blog-white);
+}
+
+/* Prazan prostor / sitni detalji */
+.container:has(.form-select) .row:nth-of-type(2):empty::before {
+  content: "Trenutačno nema recepata za odabrane filtre.";
+  grid-column: 1 / -1;
+  padding: 45px 20px;
+  border: 1px dashed var(--blog-border);
+  border-radius: 12px;
+  color: var(--blog-muted);
+  text-align: center;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .container:has(.form-select) > .row:nth-of-type(2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobitel */
+@media (max-width: 600px) {
+  .container:has(.form-select) {
+    width: min(100% - 28px, 520px);
+    padding-top: 14px;
+    padding-bottom: 55px;
+  }
+
+  .container:has(.form-select) > h1.display-4 {
+    margin-bottom: 28px !important;
+    padding: 38px 15px 32px !important;
+    border-radius: 0 0 24px 24px;
+    font-size: 43px;
+  }
+
+  .container:has(.form-select) > h1.display-4::after {
+    font-size: 9px;
+    letter-spacing: 1.7px;
+  }
+
+  .container:has(.form-select) > .row:first-of-type {
+    gap: 10px;
+    margin-bottom: 25px;
+  }
+
+  .container:has(.form-select) > .row:first-of-type > [class*="col-"] {
+    flex: 1 1 100%;
+  }
+
+  .form-select {
+    width: 100%;
+  }
+
+  .container:has(.form-select) > .row:nth-of-type(2) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .container:has(.form-select) .row:nth-of-type(2) h2 {
+    padding: 20px 20px 9px;
+    font-size: 22px;
+  }
+
+  .container:has(.form-select) .row:nth-of-type(2) > [class*="col-"] > div {
+    padding: 0 20px 15px;
+  }
+
+  .container:has(.form-select) .row:nth-of-type(2) a {
+    margin: 0 20px 20px;
+  }
+}
+
+/* Pristupačnost: smanji animacije ako ih korisnik ne želi */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}

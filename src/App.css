@@ -155,3 +155,142 @@ a{
 .blog .box{
 	border-bottom: 1px solid #E0E0E0;
 }
+
+
+/* Header */
+
+/* Glavni kontejner headera s tamnom pozadinom restorana i zaobljenim rubovima */
+.custom-header-wrapper {
+    background: 
+        linear-gradient(rgba(12, 10, 8, 0.78), rgba(12, 10, 8, 0.78)),
+        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80") center/cover no-repeat;
+    border-radius: 20px;
+    margin: 16px auto;
+    max-width: 1320px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Stil logotipa */
+.logo-icon-box {
+    width: 44px;
+    height: 44px;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.logo-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+}
+
+.logo-top {
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+.logo-bottom {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* Žuta krivulja ispod riječi "Jelovnik" u logotipu */
+.logo-yellow-curve {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #f7b928;
+    border-radius: 2px;
+}
+
+/* Navigacijski linkovi */
+.custom-nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 0.95rem;
+    font-weight: 400;
+    padding: 6px 12px !important;
+    position: relative;
+    transition: color 0.2s ease-in-out;
+}
+
+.custom-nav-link:hover {
+    color: #ffffff !important;
+}
+
+/* Aktivni link s prepoznatljivom zakrivljenom žutom podvlakom */
+.custom-nav-link.active-link {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.custom-nav-link.active-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 3px;
+    background-color: #f7b928;
+    border-radius: 3px;
+}
+
+/* Gumb: Prijava */
+.btn-prijava {
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    color: #ffffff;
+    font-size: 0.9rem;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    transition: all 0.2s ease;
+}
+
+.btn-prijava:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+/* Gumb: Isprobaj besplatno */
+.btn-isprobaj {
+    background-color: #f7b928;
+    color: #12100d;
+    font-size: 0.9rem;
+    border: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.btn-isprobaj:hover {
+    background-color: #e2a51a;
+    color: #12100d;
+    transform: translateY(-1px);
+}
+
+/* Responzivne prilagodbe za mobitele i tablete */
+@media (max-width: 991.98px) {
+    .custom-header-wrapper {
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .custom-nav-link.active-link::after {
+        left: 0;
+        transform: none;
+        width: 35px;
+        bottom: 2px;
+    }
+
+    .navbar-collapse {
+        padding-top: 1rem;
+    }
+
+}

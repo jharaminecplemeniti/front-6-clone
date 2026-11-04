@@ -1,0 +1,349 @@
+/* =========================================================
+   ŽLICA & ZAČIN — BlogSingle / pojedinačni članak
+   Paleta: nježno žuta + maslinasto zelena
+   U BlogSingle.js dodaj: import "./BlogSingle.css";
+   ========================================================= */
+
+:root {
+  --single-butter: #f5edca;
+  --single-butter-light: #fbf8eb;
+  --single-cream: #fffdf6;
+  --single-olive: #687247;
+  --single-olive-dark: #39452b;
+  --single-olive-soft: #e9ebdd;
+  --single-ink: #292c22;
+  --single-muted: #77796d;
+  --single-border: #e8e3d1;
+  --single-white: #ffffff;
+}
+
+/* Glavni okvir članka */
+.container:has(> h1) {
+  width: min(920px, calc(100% - 40px));
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 58px 0 100px;
+  color: var(--single-ink);
+  font-family: "DM Sans", "Segoe UI", Arial, sans-serif;
+}
+
+/* Naslov recepta / članka */
+.container:has(> h1) > h1 {
+  margin: 0 0 38px;
+  padding: 0 0 25px;
+  border-bottom: 1px solid var(--single-border);
+  color: var(--single-olive-dark);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(39px, 6vw, 64px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -1.7px;
+  text-align: center;
+}
+
+/* Kolona sa sadržajem */
+.container:has(> h1) > .row {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.container:has(> h1) > .row > .col-md-8 {
+  width: 100%;
+  max-width: 780px;
+  flex: 0 1 780px;
+  padding: 0;
+  color: #55574c;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* Tekst i odlomci */
+.container:has(> h1) .col-md-8 p {
+  margin: 0 0 22px;
+}
+
+.container:has(> h1) .col-md-8 strong,
+.container:has(> h1) .col-md-8 b {
+  color: var(--single-olive-dark);
+  font-weight: 700;
+}
+
+/* Podnaslovi — npr. Sastojci, Priprema, Posluživanje, Savjet */
+.container:has(> h1) .col-md-8 h2,
+.container:has(> h1) .col-md-8 h3,
+.container:has(> h1) .col-md-8 h4 {
+  margin: 42px 0 17px;
+  color: var(--single-olive-dark);
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.container:has(> h1) .col-md-8 h2 {
+  font-size: clamp(27px, 4vw, 35px);
+}
+
+.container:has(> h1) .col-md-8 h3 {
+  font-size: 25px;
+}
+
+.container:has(> h1) .col-md-8 h4 {
+  font-size: 20px;
+}
+
+/* Liste sastojaka i koraka */
+.container:has(> h1) .col-md-8 ul,
+.container:has(> h1) .col-md-8 ol {
+  margin: 12px 0 30px;
+  padding: 20px 28px 20px 48px;
+  border-radius: 12px;
+  background: var(--single-butter-light);
+}
+
+.container:has(> h1) .col-md-8 li {
+  padding: 5px 0 5px 5px;
+}
+
+.container:has(> h1) .col-md-8 li::marker {
+  color: var(--single-olive);
+  font-weight: 700;
+}
+
+.container:has(> h1) .col-md-8 li + li {
+  margin-top: 3px;
+}
+
+/* Fotografije u članku */
+.container:has(> h1) .col-md-8 img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 620px;
+  margin: 30px auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 12px 32px rgba(57, 69, 43, .10);
+}
+
+/* WordPress poravnanja slika */
+.container:has(> h1) .col-md-8 img.aligncenter {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container:has(> h1) .col-md-8 img.alignleft {
+  float: left;
+  margin: 8px 25px 18px 0;
+}
+
+.container:has(> h1) .col-md-8 img.alignright {
+  float: right;
+  margin: 8px 0 18px 25px;
+}
+
+/* Opisi / potpisi fotografija */
+.container:has(> h1) .col-md-8 figure {
+  margin: 30px 0;
+}
+
+.container:has(> h1) .col-md-8 figcaption {
+  padding: 10px 12px;
+  color: var(--single-muted);
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Video i ugrađeni sadržaj */
+.container:has(> h1) .col-md-8 iframe,
+.container:has(> h1) .col-md-8 video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  margin: 28px 0;
+  border: 0;
+  border-radius: 12px;
+  background: var(--single-butter-light);
+}
+
+.container:has(> h1) .col-md-8 video {
+  object-fit: contain;
+}
+
+/* Linkovi */
+.container:has(> h1) .col-md-8 a {
+  color: var(--single-olive);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: #c5cbaa;
+  text-underline-offset: 3px;
+  transition: color .2s ease;
+}
+
+.container:has(> h1) .col-md-8 a:hover {
+  color: var(--single-olive-dark);
+}
+
+/* Citati i istaknuti tekst */
+.container:has(> h1) .col-md-8 blockquote {
+  margin: 30px 0;
+  padding: 20px 25px;
+  border-left: 4px solid var(--single-olive);
+  border-radius: 0 10px 10px 0;
+  background: var(--single-butter-light);
+  color: var(--single-olive-dark);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 19px;
+  font-style: italic;
+}
+
+/* Razdjelnik */
+.container:has(> h1) .col-md-8 hr {
+  margin: 35px 0;
+  border: 0;
+  border-top: 1px solid var(--single-border);
+}
+
+/* Tablice ako ih sadržaj članka sadrži */
+.container:has(> h1) .col-md-8 table {
+  width: 100%;
+  margin: 25px 0;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.container:has(> h1) .col-md-8 th,
+.container:has(> h1) .col-md-8 td {
+  padding: 12px 14px;
+  border: 1px solid var(--single-border);
+  text-align: left;
+}
+
+.container:has(> h1) .col-md-8 th {
+  background: var(--single-butter);
+  color: var(--single-olive-dark);
+}
+
+/* Stanje učitavanja — stil za <p>Učitavanje...</p> */
+.container:has(> h1) {
+  /* osnovni izgled spreman je i za sadržaj nakon učitavanja */
+}
+
+.container:has(> p:only-child) {
+  min-height: 55vh;
+  display: grid;
+  place-items: center;
+}
+
+.container:has(> p:only-child) > p {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 0;
+  padding: 18px 25px;
+  border-radius: 30px;
+  background: var(--single-butter-light);
+  color: var(--single-olive-dark);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.container:has(> p:only-child) > p::before {
+  content: "";
+  width: 17px;
+  height: 17px;
+  border: 2px solid var(--single-olive-soft);
+  border-top-color: var(--single-olive);
+  border-radius: 50%;
+  animation: single-spin .8s linear infinite;
+}
+
+@keyframes single-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .container:has(> h1) {
+    width: min(100% - 36px, 700px);
+    padding-top: 42px;
+    padding-bottom: 75px;
+  }
+
+  .container:has(> h1) > h1 {
+    margin-bottom: 30px;
+    font-size: clamp(36px, 7vw, 52px);
+  }
+
+  .container:has(> h1) .col-md-8 {
+    font-size: 15px;
+    line-height: 1.85;
+  }
+}
+
+/* Mobitel */
+@media (max-width: 520px) {
+  .container:has(> h1) {
+    width: calc(100% - 30px);
+    padding-top: 32px;
+    padding-bottom: 55px;
+  }
+
+  .container:has(> h1) > h1 {
+    padding-bottom: 20px;
+    font-size: 38px;
+    letter-spacing: -1px;
+  }
+
+  .container:has(> h1) .col-md-8 {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .container:has(> h1) .col-md-8 h2 {
+    margin-top: 32px;
+    font-size: 28px;
+  }
+
+  .container:has(> h1) .col-md-8 h3 {
+    font-size: 22px;
+  }
+
+  .container:has(> h1) .col-md-8 ul,
+  .container:has(> h1) .col-md-8 ol {
+    padding: 16px 18px 16px 38px;
+  }
+
+  .container:has(> h1) .col-md-8 img {
+    margin: 22px auto;
+    border-radius: 9px;
+  }
+
+  .container:has(> h1) .col-md-8 img.alignleft,
+  .container:has(> h1) .col-md-8 img.alignright {
+    float: none;
+    display: block;
+    margin: 22px auto;
+  }
+
+  .container:has(> h1) .col-md-8 blockquote {
+    padding: 17px 18px;
+    font-size: 17px;
+  }
+}
+
+/* Pristupačnost */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}

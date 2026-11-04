@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Twitter, Linkedin } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 
 
 function Footer() {
@@ -14,6 +15,8 @@ function Footer() {
                 <a href="https://linkedin.com" target="_blank" rel="noreferrer"><Linkedin /></a>
             </p>
             <p>
+            <Link to="/privatnost">Pravila Privatnosti</Link>
+            <Link to="/kolacici">Kolačići</Link>
                 Copyright ©2020 All rights reserved 
             </p>
             </div>

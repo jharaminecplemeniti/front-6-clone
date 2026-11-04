@@ -11,11 +11,19 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Works from './pages/Works';
 import Blog from './pages/Blog';
+import BlogSingle from './pages/BlogSingle';
 import Contact from './pages/Contact';
+import Page from './pages/Page';
 
 // Vježbe
 import Recipes from "./components/vjezbe/Recipes";
 import Posts from "./components/vjezbe/Posts";
+import Users from './components/vjezbe/Users';
+
+// Recepti
+
+import Recepti from './pages/Recepti';
+import ReceptiSingle from './pages/ReceptiSingle';
 
 
 function App() {
@@ -27,9 +35,16 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/works" element={<Works />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path='/blog/:slug' element={<BlogSingle />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/Recipes" element={<Recipes />} />
         <Route path="/Posts" element={<Posts />} />
+        <Route path="/Users" element={<Users />} />
+        <Route path='/recepies' element={<Recepti />} />
+        <Route path='/recipes/:slug' element={<ReceptiSingle />} />
+        
+        <Route path="/privatnost" element={<Page pageID="285" />} />
+        <Route path="/kolacici" element={<Page pageID="290" />} />
       </Routes>
 
       <Footer />
