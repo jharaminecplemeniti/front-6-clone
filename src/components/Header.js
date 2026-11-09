@@ -1,32 +1,85 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
+import "./Header.css";
 
 function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
+  const closeMenu = () => setMenuOpen(false);
 
-    return (
-        <nav className="navbar navbar-expand-md">
-        <div className="container">
-          <Link className="navbar-brand" to="/">LOGO</Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+  return (
+    <header className="recipe-header">
+      <nav className="recipe-navbar">
+        <div className="recipe-nav-container">
+          <Link className="recipe-brand" to="/" onClick={closeMenu}>
+            <span className="recipe-brand-mark">Ž</span>
+
+            <span className="recipe-brand-name">
+              žlica <span>&</span> začin
+              <small>RECEPTI ZA SVAKI DAN</small>
+            </span>
+          </Link>
+
+          <button
+            className={`recipe-menu-toggle ${menuOpen ? "is-open" : ""}`}
+            type="button"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Zatvori izbornik" : "Otvori izbornik"}
+            aria-expanded={menuOpen}
+            aria-controls="recipe-nav-menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
-          <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link" to="/kafici">Kafići</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/restorani">Restorani</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/blog">Blog</Link>
-              </li>
-              
-            </ul>
+
+          <div
+            id="recipe-nav-menu"
+            className={`recipe-nav-menu ${menuOpen ? "is-open" : ""}`}
+          >
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                `recipe-nav-link ${isActive ? "active" : ""}`
+              }
+              onClick={closeMenu}
+            >
+              Početna
+            </NavLink>
+
+            <NavLink
+              to="/recipes"
+              className={({ isActive }) =>
+                `recipe-nav-link ${isActive ? "active" : ""}`
+              }
+              onClick={closeMenu}
+            >
+              Recepti
+            </NavLink>
+
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                `recipe-nav-link ${isActive ? "active" : ""}`
+              }
+              onClick={closeMenu}
+            >
+              Blog
+            </NavLink>
+
+            <Link
+              to="/recipes"
+              className="recipe-nav-cta"
+              onClick={closeMenu}
+            >
+              Pronađi recept <span>↗</span>
+            </Link>
           </div>
         </div>
       </nav>
-    )
+    </header>
+  );
 }
 
 export default Header;

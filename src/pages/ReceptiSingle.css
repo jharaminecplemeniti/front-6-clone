@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap');
+
+:root {
+  --rs-apricot:#efc3a6; --rs-apricot-light:#fbede3; --rs-cream:#fffaf4;
+  --rs-sage:#78866b; --rs-sage-dark:#455541; --rs-sage-soft:#e8eee3;
+  --rs-ink:#302e29; --rs-muted:#817b72; --rs-line:#eadfd4; --rs-white:#fff;
+}
+
+
+.container:has(> h1) {
+  width:min(1060px, calc(100% - 40px)); max-width:1060px;
+  margin:0 auto; padding:48px 0 100px;
+  color:var(--rs-ink); font-family:"Lato",Arial,sans-serif;
+}
+.container:has(> h1) > h1 {
+  max-width:900px; margin:0 auto 24px;
+  color:var(--rs-sage-dark); font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(38px,6vw,64px); font-weight:700;
+  line-height:1.1; letter-spacing:-1.6px; text-align:center;
+}
+
+
+.container:has(> h1) > p {
+  width:min(780px,100%); margin:10px auto; padding:13px 18px;
+  border:1px solid var(--rs-line); border-radius:12px;
+  background:var(--rs-cream); color:var(--rs-sage-dark);
+  font-size:14px; font-weight:700; line-height:1.5;
+}
+.container:has(> h1) > p:first-of-type { margin-top:30px; }
+.container:has(> h1) > p::before {
+  display:inline-block; margin-right:10px; color:var(--rs-sage); font-size:16px;
+}
+.container:has(> h1) > p:nth-of-type(1)::before { content:"◷"; }
+.container:has(> h1) > p:nth-of-type(2)::before { content:"♨"; }
+.container:has(> h1) > p:nth-of-type(3)::before { content:"♧"; }
+
+
+.container:has(> h1) > .row { display:flex; justify-content:center; margin:38px 0 0; }
+.container:has(> h1) > .row > .col-md-8 {
+  width:100%; max-width:820px; flex:0 1 820px; padding:0;
+  color:#5c5a50; font-size:15px; line-height:1.9; overflow-wrap:anywhere;
+}
+
+
+.container:has(> h1) .col-md-8 blockquote {
+  margin:0 0 30px; padding:22px 26px; border:0;
+  border-left:4px solid var(--rs-apricot); border-radius:0 13px 13px 0;
+  background:var(--rs-apricot-light); color:var(--rs-sage-dark);
+  font-family:"Playfair Display",Georgia,serif; font-size:19px;
+  font-style:italic; line-height:1.65;
+}
+.container:has(> h1) .col-md-8 blockquote p { margin:0; }
+
+
+.container:has(> h1) .col-md-8 h2,
+.container:has(> h1) .col-md-8 h3,
+.container:has(> h1) .col-md-8 h4 {
+  margin:42px 0 17px; color:var(--rs-sage-dark);
+  font-family:"Playfair Display",Georgia,serif; font-weight:700; line-height:1.25;
+}
+.container:has(> h1) .col-md-8 h2 { font-size:clamp(28px,4vw,36px); }
+.container:has(> h1) .col-md-8 h3 { font-size:25px; }
+.container:has(> h1) .col-md-8 h4 { font-size:21px; }
+
+
+.container:has(> h1) .col-md-8 ul,
+.container:has(> h1) .col-md-8 ol {
+  margin:14px 0 30px; padding:20px 28px 20px 48px;
+  border:1px solid #eee4d9; border-radius:14px; background:var(--rs-cream);
+}
+.container:has(> h1) .col-md-8 li { padding:5px 0 5px 5px; }
+.container:has(> h1) .col-md-8 li::marker { color:var(--rs-sage); font-weight:800; }
+.container:has(> h1) .col-md-8 li + li { margin-top:4px; }
+
+.container:has(> h1) .col-md-8 img {
+  display:block; width:auto; max-width:100%; height:auto; max-height:650px;
+  margin:30px auto; border-radius:15px; object-fit:cover;
+  box-shadow:0 14px 34px rgba(69,85,65,.12);
+}
+.container:has(> h1) .col-md-8 figure { margin:30px 0; }
+.container:has(> h1) .col-md-8 figcaption {
+  padding:10px 12px; color:var(--rs-muted); font-size:12px;
+  font-style:italic; text-align:center;
+}
+
+
+.container:has(> h1) .col-md-8 iframe {
+  display:block; width:100%; max-width:100%; aspect-ratio:16/9; height:auto;
+  margin:28px 0; border:0; border-radius:15px;
+  background:var(--rs-sage-soft); box-shadow:0 12px 30px rgba(69,85,65,.10);
+}
+.container:has(> h1) .col-md-8 video {
+  display:block; width:100%; max-width:100%; height:auto;
+  margin:28px 0; border-radius:15px;
+}
+
+
+.container:has(> h1) .col-md-8 a {
+  color:var(--rs-sage-dark); font-weight:700;
+  text-decoration-color:#c4cdb9; text-underline-offset:3px;
+  transition:color .2s ease;
+}
+.container:has(> h1) .col-md-8 a:hover { color:#a66e4d; }
+.container:has(> h1) .col-md-8 strong,
+.container:has(> h1) .col-md-8 b { color:var(--rs-sage-dark); }
+.container:has(> h1) .col-md-8 hr {
+  margin:38px 0; border:0; border-top:1px solid var(--rs-line);
+}
+
+
+.container:has(> p:only-child) {
+  min-height:55vh; display:grid; place-items:center;
+  color:var(--rs-sage-dark); font-family:"Lato",Arial,sans-serif;
+}
+.container:has(> p:only-child) > p {
+  display:flex; align-items:center; gap:13px; margin:0; padding:18px 25px;
+  border-radius:30px; background:var(--rs-apricot-light);
+  font-size:14px; font-weight:700;
+}
+.container:has(> p:only-child) > p::before {
+  content:""; width:17px; height:17px; border:2px solid #f0d8c7;
+  border-top-color:var(--rs-sage); border-radius:50%;
+  animation:rs-spin .8s linear infinite;
+}
+@keyframes rs-spin { to { transform:rotate(360deg); } }
+
+
+@media (max-width:768px) {
+  .container:has(> h1) { width:min(100% - 36px,720px); padding-top:38px; padding-bottom:75px; }
+  .container:has(> h1) > h1 { font-size:clamp(36px,7vw,52px); }
+  .container:has(> h1) .col-md-8 { font-size:14px; }
+}
+
+
+@media (max-width:520px) {
+  .container:has(> h1) { width:calc(100% - 30px); padding-top:30px; padding-bottom:55px; }
+  .container:has(> h1) > h1 { margin-bottom:20px; font-size:38px; letter-spacing:-1px; }
+  .container:has(> h1) > p { padding:12px 14px; font-size:13px; }
+  .container:has(> h1) > .row { margin-top:28px; }
+  .container:has(> h1) .col-md-8 { font-size:14px; line-height:1.8; }
+  .container:has(> h1) .col-md-8 h2 { margin-top:32px; font-size:29px; }
+  .container:has(> h1) .col-md-8 h3 { font-size:22px; }
+  .container:has(> h1) .col-md-8 ul,
+  .container:has(> h1) .col-md-8 ol { padding:16px 17px 16px 38px; }
+  .container:has(> h1) .col-md-8 blockquote { padding:17px 18px; font-size:17px; }
+  .container:has(> h1) .col-md-8 img { margin:22px auto; border-radius:10px; }
+}
+
+
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    scroll-behavior:auto !important;
+    transition-duration:.01ms !important;
+    animation-duration:.01ms !important;
+  }
+}

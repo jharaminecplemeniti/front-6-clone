@@ -1,9 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&display=swap');
 
-body{
-	font-family: "Heebo", sans-serif;
-	color: #21243D;
-	font-size: 16px;
+/* GLAVNA POZADINA STRANICE */
+html,
+body,
+#root {
+    min-height: 100%;
+    background-color: #87b88e;
+}
+
+body {
+    margin: 0;
+    font-family: "Heebo", sans-serif;
+    color: #21243D;
+    font-size: 16px;
 }
 
 a{

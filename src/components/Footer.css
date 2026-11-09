@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+
+.recipe-footer {
+  position: relative;
+  margin-top: 5rem;
+  padding: 3.5rem 1.5rem 1.4rem;
+  overflow: hidden;
+  color: #f8f4e9;
+  background: #35483b;
+  font-family: "Lato", sans-serif;
+}
+
+.recipe-footer::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 5px;
+  content: "";
+  background: linear-gradient(90deg, #d98b65, #e8c78e, #a9b79a);
+}
+
+.recipe-footer-container {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.recipe-footer-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0 2.7rem;
+  text-align: center;
+}
+
+.recipe-footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #fffaf0;
+  text-decoration: none;
+}
+
+.recipe-footer-brand-mark {
+  display: grid;
+  width: 49px;
+  height: 49px;
+  place-items: center;
+  border: 1px solid rgba(248, 244, 233, 0.55);
+  border-radius: 50%;
+  color: #35483b;
+  background: #e8c78e;
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.recipe-footer-brand-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: "Playfair Display", serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.recipe-footer-brand-name > span {
+  display: inline;
+  color: #e8c78e;
+}
+
+.recipe-footer-brand-name small {
+  margin-top: 0.45rem;
+  color: #d5d8ca;
+  font-family: "Lato", sans-serif;
+  font-size: 0.57rem;
+  font-weight: 700;
+  letter-spacing: 0.19em;
+}
+
+.recipe-footer-description {
+  max-width: 420px;
+  margin: 1.35rem 0 1.5rem;
+  color: #d9dfd5;
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+.recipe-footer-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.recipe-footer-socials a {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(248, 244, 233, 0.25);
+  border-radius: 50%;
+  color: #f8f4e9;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: color 180ms ease, background-color 180ms ease,
+    border-color 180ms ease, transform 180ms ease;
+}
+
+.recipe-footer-socials a:hover {
+  transform: translateY(-3px);
+  border-color: #e8c78e;
+  color: #35483b;
+  background: #e8c78e;
+}
+
+.recipe-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(248, 244, 233, 0.18);
+}
+
+.recipe-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.35rem;
+}
+
+.recipe-footer-links a {
+  color: #e8c78e;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.recipe-footer-links a:hover {
+  color: #fffaf0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.recipe-footer-bottom p {
+  margin: 0;
+  color: #cbd3c8;
+  font-size: 0.82rem;
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .recipe-footer {
+    margin-top: 3.5rem;
+    padding: 3rem 1.2rem 1.3rem;
+  }
+
+  .recipe-footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .recipe-footer-links {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .recipe-footer-bottom p {
+    text-align: center;
+    line-height: 1.6;
+  }
+}

@@ -1,91 +1,111 @@
-/* ovu stranicu treba promjeniti iz ugostiteljskih objekata u recepte*/
-
-import {useState, useEffect} from "react";
-import {Link} from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Recepti.css";
 
-function Recipes(){
+function Recipes() {
     const [posts, setPosts] = useState([]);
 
-     const [venueType, setVenueType] = useState([]);
-    const [selectedVenue, setSelectedVenue] = useState("");
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("");
 
-    const [lokacije, setLokacije] = useState([]);
-    const [selectedLokacija, setSelectedLokacija] = useState("");
+    const [tags, setTags] = useState([]);
+    const [selectedTag, setSelectedTag] = useState("");
 
+useEffect(() => {
+    fetch("https://front6.edukacija.online/backend/wp-json/wp/v2/vrsta-jela?_fields=id,name&per_page=100")
+        .then(res => res.json())
+        .then(data => setCategories(data))
+        .catch(err => console.error(err));
 
-    useEffect(() => {
-       fetch("https://front6.edukacija.online/backend/wp-json/wp/v2/venue_type?_fields=id,name")
-            .then(res => res.json())
-            .then(data => setVenueType(data))
-            .catch(err => console.log(err))
+    fetch("https://front6.edukacija.online/backend/wp-json/wp/v2/tags?_fields=id,name&per_page=100")
+        .then(res => res.json())
+        .then(data => setTags(data))
+        .catch(err => console.error(err));
+}, []);
 
-        fetch("https://front6.edukacija.online/backend/wp-json/wp/v2/lokacija?_fields=id,name&per_page=100")
-            .then(res => res.json())
-            .then(data => setLokacije(data))
-            .catch(err => console.log(err))
-    }, []);
+useEffect(() => {
+    let url = "https://front6.edukacija.online/backend/wp-json/wp/v2/recipes?";
 
-    useEffect(() => {
-        let url = "https://front6.edukacija.online/backend/wp-json/wp/v2/venue?"
+    if (selectedCategory) {
+        url += "vrsta-jela=" + selectedCategory + "&";
+    }
 
-        if(selectedVenue) url += "venue_type=" + selectedVenue + "&";
-        if(selectedLokacija) url += "lokacija=" + selectedLokacija;
+    if (selectedTag) {
+        url += "tags=" + selectedTag;
+    }
 
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setPosts(data))
-            .catch(err => console.error(err));
-    }, [selectedVenue, selectedLokacija]);
+    fetch(url)
+        .then(res => res.json())
+        .then(data => setPosts(data))
+        .catch(err => console.error(err));
+
+}, [selectedCategory, selectedTag]);
 
     return (
         <div className="container">
-            <h1 className="display-4 text-center py-5">Recepti</h1>
+
+            <h1 className="display-4 text-center py-5">
+                Naši recepti
+            </h1>
+
             <div className="row">
+
                 <div className="col-md-4">
                     <select
                         className="form-select"
-                        value={selectedVenue}
-                        onChange={e => setSelectedVenue(e.target.value)}
-                    >
-                        <option value="">Svi objekti</option>
-                        {
-                            venueType.map(type => {
-                                return <option key={type.id} value={type.id}>{type.name}</option>
-                            })
-                        }
+                        value={selectedCategory}
+                        onChange={e => setSelectedCategory(e.target.value)} >
+                        <option value="">Sve kategorije</option>
+
+                        {categories.map(category => (
+                            <option key={category.id} value={category.id}>
+                                {category.name}
+                            </option>
+                        ))}
+
                     </select>
                 </div>
+
                 <div className="col-md-4">
                     <select
                         className="form-select"
-                        value={selectedLokacija}
-                        onChange={e => setSelectedLokacija(e.target.value)}
-                    >
-                        <option value="">Sve lokacije</option>
-                        {
-                            lokacije.map(lokacija => {
-                                return <option key={lokacija.id} value={lokacija.id}>{lokacija.name}</option>
-                            })
-                        }
+                        value={selectedTag}
+                        onChange={e => setSelectedTag(e.target.value)}>
+                        <option value="">Sve oznake</option>
+
+                        {tags.map(tag => (
+                            <option key={tag.id} value={tag.id}>
+                                {tag.name}
+                            </option>
+                        ))}
+
                     </select>
                 </div>
+
             </div>
+
             <div className="row">
-                {
-                    posts.map(post => {
-                        return(
-                            <div className="col-md-4">
-                                <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }}></h2>
-                               
-                                <Link to={'/recipes/' + post.slug}>Pročitaj više</Link>
-                            </div>
-                        )
-                    })
-                }
+
+                {posts.map(post => (
+                    <div className="col-md-4" key={post.id}>
+
+                        <h2
+                            dangerouslySetInnerHTML={{
+                                __html: post.title.rendered
+                            }}
+                        />
+
+                        <Link to={"/recipes/" + post.slug}>
+                            Pogledaj recept
+                        </Link>
+
+                    </div>
+                ))}
+
             </div>
+
         </div>
-    )
+    );
 }
 
 export default Recipes;

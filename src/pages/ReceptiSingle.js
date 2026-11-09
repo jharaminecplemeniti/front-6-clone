@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+import "./ReceptiSingle.css";
+
 function RecipesSingle() {
 
     const { slug } = useParams();

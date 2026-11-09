@@ -16,7 +16,6 @@ import Contact from './pages/Contact';
 import Page from './pages/Page';
 
 // Vježbe
-import Recipes from "./components/vjezbe/Recipes";
 import Posts from "./components/vjezbe/Posts";
 import Users from './components/vjezbe/Users';
 
@@ -37,10 +36,9 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path='/blog/:slug' element={<BlogSingle />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/Recipes" element={<Recipes />} />
         <Route path="/Posts" element={<Posts />} />
         <Route path="/Users" element={<Users />} />
-        <Route path='/recepies' element={<Recepti />} />
+        <Route path='/recipes' element={<Recepti />} />
         <Route path='/recipes/:slug' element={<ReceptiSingle />} />
         
         <Route path="/privatnost" element={<Page pageID="285" />} />
