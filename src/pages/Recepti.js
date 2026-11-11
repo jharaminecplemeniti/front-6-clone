@@ -4,7 +4,6 @@ import "./Recepti.css";
 
 function Recipes() {
     const [posts, setPosts] = useState([]);
-
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
 
