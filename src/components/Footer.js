@@ -68,6 +68,7 @@ function Footer() {
           <div className="recipe-footer-links">
             <Link to="/privatnost">Pravila privatnosti</Link>
             <Link to="/kolacici">Kolačići</Link>
+            <Link to="/o_nama">O nama</Link>
           </div>
 
           <p>

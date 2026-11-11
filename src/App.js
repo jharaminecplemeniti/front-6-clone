@@ -41,8 +41,9 @@ function App() {
         <Route path='/recipes' element={<Recepti />} />
         <Route path='/recipes/:slug' element={<ReceptiSingle />} />
         
-        <Route path="/privatnost" element={<Page pageID="285" />} />
-        <Route path="/kolacici" element={<Page pageID="290" />} />
+        <Route path="/privatnost" element={<Page pageID="557" />} />
+        <Route path="/kolacici" element={<Page pageID="560" />} />
+        <Route path="/o_nama" element={<Page pageID="576" />} />
       </Routes>
 
       <Footer />

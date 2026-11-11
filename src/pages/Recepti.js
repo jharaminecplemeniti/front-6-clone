@@ -1,109 +1,143 @@
+
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+
+import CategoryDropdown from "./CategoryDropdown";
+import TagDropdown from "./TagDropdown";
+import RecipeCard from "./RecipeCard";
+
 import "./Recepti.css";
 
+const API_URL =
+    "https://front6.edukacija.online/backend/wp-json/wp/v2";
+
 function Recipes() {
+
     const [posts, setPosts] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState("");
-
     const [tags, setTags] = useState([]);
     const [selectedTag, setSelectedTag] = useState("");
 
-useEffect(() => {
-    fetch("https://front6.edukacija.online/backend/wp-json/wp/v2/vrsta-jela?_fields=id,name&per_page=100")
-        .then(res => res.json())
-        .then(data => setCategories(data))
-        .catch(err => console.error(err));
+    const [searchParams, setSearchParams] = useSearchParams();
 
-    fetch("https://front6.edukacija.online/backend/wp-json/wp/v2/tags?_fields=id,name&per_page=100")
-        .then(res => res.json())
-        .then(data => setTags(data))
-        .catch(err => console.error(err));
-}, []);
+    const selectedCategory = searchParams.get("vrsta-jela") || "";
 
-useEffect(() => {
-    let url = "https://front6.edukacija.online/backend/wp-json/wp/v2/recipes?";
+    // DOHVAĆANJE KATEGORIJA I OZNAKA
 
-    if (selectedCategory) {
-        url += "vrsta-jela=" + selectedCategory + "&";
-    }
+    useEffect(() => {
 
-    if (selectedTag) {
-        url += "tags=" + selectedTag;
-    }
+        fetch(`${API_URL}/vrsta-jela?_fields=id,name,parent&per_page=100`)
+            .then(res => res.json())
+            .then(data => setCategories(data))
+            .catch(err => console.error(err));
 
-    fetch(url)
-        .then(res => res.json())
-        .then(data => setPosts(data))
-        .catch(err => console.error(err));
+        fetch(`${API_URL}/tags?_fields=id,name&per_page=100`)
+            .then(res => res.json())
+            .then(data => setTags(data))
+            .catch(err => console.error(err));
 
-}, [selectedCategory, selectedTag]);
+    }, []);
+
+    // DOHVAĆANJE RECEPATA
+
+    useEffect(() => {
+
+        const params = new URLSearchParams();
+
+        if (selectedCategory) {
+            params.set("vrsta-jela", selectedCategory);
+        }
+
+        if (selectedTag) {
+            params.set("tags", selectedTag);
+        }
+
+        fetch(`${API_URL}/recipes?${params.toString()}&_embed=1`)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error("Greška kod dohvaćanja recepata.");
+                }
+
+                return res.json();
+            })
+            .then(data => setPosts(data))
+            .catch(err => console.error(err));
+
+    }, [selectedCategory, selectedTag]);
+
+    // PROMJENA KATEGORIJE
+
+    const handleCategoryChange = (value) => {
+
+        setSearchParams(params => {
+
+            const newParams = new URLSearchParams(params);
+
+            if (value) {
+                newParams.set("vrsta-jela", value);
+            } else {
+                newParams.delete("vrsta-jela");
+            }
+
+            return newParams;
+        });
+    };
 
     return (
-        <div className="container">
+        <main className="container">
 
             <h1 className="display-4 text-center py-5">
                 Naši recepti
             </h1>
 
-            <div className="row">
+            {/* FILTERI */}
 
-                <div className="col-md-4">
-                    <select
-                        className="form-select"
-                        value={selectedCategory}
-                        onChange={e => setSelectedCategory(e.target.value)} >
-                        <option value="">Sve kategorije</option>
+            <div className="row mb-4">
 
-                        {categories.map(category => (
-                            <option key={category.id} value={category.id}>
-                                {category.name}
-                            </option>
-                        ))}
-
-                    </select>
+                <div className="col-md-4 mb-3">
+                    <CategoryDropdown
+                        categories={categories}
+                        selectedCategory={selectedCategory}
+                        onCategoryChange={handleCategoryChange}
+                    />
                 </div>
 
-                <div className="col-md-4">
-                    <select
-                        className="form-select"
-                        value={selectedTag}
-                        onChange={e => setSelectedTag(e.target.value)}>
-                        <option value="">Sve oznake</option>
-
-                        {tags.map(tag => (
-                            <option key={tag.id} value={tag.id}>
-                                {tag.name}
-                            </option>
-                        ))}
-
-                    </select>
+                <div className="col-md-4 mb-3">
+                    <TagDropdown
+                        tags={tags}
+                        selectedTag={selectedTag}
+                        onTagChange={setSelectedTag}
+                    />
                 </div>
 
             </div>
 
+            {/* RECEPTI */}
+
             <div className="row">
 
-                {posts.map(post => (
-                    <div className="col-md-4" key={post.id}>
+                {posts.length > 0 ? (
 
-                        <h2
-                            dangerouslySetInnerHTML={{
-                                __html: post.title.rendered
-                            }}
+                    posts.map(post => (
+                        <RecipeCard
+                            key={post.id}
+                            post={post}
                         />
+                    ))
 
-                        <Link to={"/recipes/" + post.slug}>
-                            Pogledaj recept
-                        </Link>
+                ) : (
 
+                    <div className="col-12">
+                        <p className="text-center py-5">
+                            Nema pronađenih recepata za odabrane filtere.
+                        </p>
                     </div>
-                ))}
+
+                )}
 
             </div>
 
-        </div>
+        </main>
     );
 }
 

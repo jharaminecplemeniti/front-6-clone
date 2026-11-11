@@ -1,0 +1,219 @@
+/* PAGE — Žlica & začin */
+
+.custom-page {
+  width: 100%;
+  min-height: 70vh;
+  padding-bottom: 4rem;
+  color: #35483B;
+  font-family: "Lato", sans-serif;
+}
+
+.custom-page-container {
+  width: min(1180px, calc(100% - 48px));
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.custom-page-header {
+  position: relative;
+  padding: clamp(3.5rem, 7vw, 6rem) 0 clamp(2.5rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.custom-page-eyebrow {
+  display: inline-block;
+  margin: 0 0 1rem;
+  color: #A95F42;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.custom-page-header h1 {
+  max-width: 1000px;
+  margin: 0 auto;
+  color: #293D30;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.3rem, 5vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.custom-page-content-wrapper {
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  border: 1px solid rgba(53, 72, 59, 0.1);
+  border-radius: 16px;
+  background: #F7F1E5;
+  box-shadow: 0 14px 38px rgba(41, 61, 48, 0.09);
+}
+
+.custom-page-content {
+  width: 100%;
+  color: #405747;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.custom-page-content > :first-child { margin-top: 0; }
+.custom-page-content > :last-child { margin-bottom: 0; }
+
+.custom-page-content h2,
+.custom-page-content h3,
+.custom-page-content h4 {
+  margin: 2.4rem 0 1rem;
+  color: #293D30;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.custom-page-content h2 { font-size: clamp(1.7rem, 3vw, 2.35rem); }
+.custom-page-content h3 { font-size: clamp(1.4rem, 2.5vw, 1.8rem); }
+.custom-page-content h4 { font-size: 1.25rem; }
+
+.custom-page-content p { margin: 0 0 1.25rem; }
+
+.custom-page-content a {
+  color: #A95F42;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(169, 95, 66, 0.4);
+  text-underline-offset: 3px;
+}
+
+.custom-page-content a:hover {
+  color: #7D432F;
+  text-decoration-color: currentColor;
+}
+
+.custom-page-content ul,
+.custom-page-content ol {
+  margin: 0 0 1.5rem;
+  padding-left: 1.6rem;
+}
+
+.custom-page-content li { margin-bottom: 0.45rem; padding-left: 0.2rem; }
+.custom-page-content li::marker { color: #A95F42; }
+
+.custom-page-content blockquote {
+  margin: 2rem 0;
+  padding: 1.2rem 1.5rem;
+  border-left: 4px solid #D98B65;
+  border-radius: 0 10px 10px 0;
+  color: #35483B;
+  background: #EEE6D6;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+}
+
+.custom-page-content img,
+.custom-page-content figure { max-width: 100%; }
+
+.custom-page-content img {
+  display: block;
+  height: auto;
+  margin: 1.8rem auto;
+  border-radius: 12px;
+}
+
+.custom-page-content figure { margin: 2rem 0; }
+
+.custom-page-content figcaption {
+  margin-top: 0.65rem;
+  color: #718071;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.custom-page-content iframe,
+.custom-page-content video {
+  display: block;
+  max-width: 100%;
+  margin: 2rem auto;
+  border-radius: 12px;
+}
+
+.custom-page-content iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+.custom-page-content table {
+  width: 100%;
+  margin: 1.8rem 0;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.custom-page-content th,
+.custom-page-content td {
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(53, 72, 59, 0.15);
+  text-align: left;
+}
+
+.custom-page-content th { color: #F7F1E5; background: #35483B; }
+.custom-page-content tr:nth-child(even) td { background: #EEE6D6; }
+
+.custom-page-content hr {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: 1px solid rgba(53, 72, 59, 0.2);
+}
+
+.custom-page-content .wp-block-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+}
+
+.custom-page-content .wp-block-button__link {
+  display: inline-block;
+  padding: 0.75rem 1.2rem;
+  border-radius: 7px;
+  color: #F7F1E5;
+  background: #35483B;
+  text-decoration: none;
+}
+
+.custom-page-content .wp-block-button__link:hover {
+  color: #fff;
+  background: #26392E;
+}
+
+.page-loading,
+.page-error {
+  width: min(900px, calc(100% - 40px));
+  min-height: 45vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #35483B;
+  text-align: center;
+}
+
+.page-loading p,
+.page-error p { font-size: 1.05rem; }
+
+.page-error h2 {
+  color: #293D30;
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+@media (max-width: 640px) {
+  .custom-page { padding-bottom: 2.5rem; }
+  .custom-page-container { width: calc(100% - 28px); }
+  .custom-page-header { padding-top: 3rem; padding-bottom: 2rem; }
+  .custom-page-content-wrapper { padding: 1.35rem 1.1rem; border-radius: 11px; }
+  .custom-page-content { font-size: 1rem; line-height: 1.75; }
+  .custom-page-content blockquote { padding: 1rem; font-size: 1.05rem; }
+  .custom-page-content table { display: block; overflow-x: auto; white-space: nowrap; }
+}
