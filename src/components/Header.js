@@ -9,11 +9,14 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [categories, setCategories] = useState([]);
   const [recipeSubmenuOpen, setRecipeSubmenuOpen] = useState(false);
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
 
+  // Zatvara sve navigacijske izbornike
   const closeMenu = () => {
     setMenuOpen(false);
     setRecipeSubmenuOpen(false);
-};
+    setAccountMenuOpen(false);
+  };
 
   useEffect(() => {
     fetch(`${API_URL}/vrsta-jela?per_page=100`)
@@ -174,7 +177,27 @@ const getSubcategories = (parentID) => {
               >
                 O nama
             </NavLink>
+                <div className={`account-dropdown ${accountMenuOpen ? "is-open" : ""}`}>
+                  <button
+                    type="button"
+                    className="account-dropdown-button"
+                    onClick={() => setAccountMenuOpen(!accountMenuOpen)}
+                    aria-expanded={accountMenuOpen}
+                  >
+                    Prijavi se
+                    <span className="dropdown-arrow">⌄</span>
+                  </button>
 
+                  <div className="account-dropdown-menu">
+                    <Link to="/prijava" onClick={closeMenu}>
+                      Prijava
+                    </Link>
+
+                    <Link to="/registracija" onClick={closeMenu}>
+                      Registracija
+                    </Link>
+                  </div>
+                </div>
           </div>
         </div>
       </nav>

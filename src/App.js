@@ -24,6 +24,10 @@ import Users from './components/vjezbe/Users';
 import Recepti from './pages/Recepti';
 import ReceptiSingle from './pages/ReceptiSingle';
 
+// Dashboard
+import Prijava from './dashboard/Prijava';
+import Registracija from './dashboard/Registracija';
+
 
 function App() {
   return (
@@ -44,6 +48,8 @@ function App() {
         <Route path="/privatnost" element={<Page pageID="557" />} />
         <Route path="/kolacici" element={<Page pageID="560" />} />
         <Route path="/o_nama" element={<Page pageID="576" />} />
+        <Route path="/prijava" element={<Prijava />} />
+        <Route path="/registracija" element={<Registracija />} />
       </Routes>
 
       <Footer />

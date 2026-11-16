@@ -1,7 +1,5 @@
-/* HEADER — Žlica & začin
-   Usklađeno s Recepti.css i ReceptiSingle.css
-   Boje: marelica, krem i kaduljasto zelena
-*/
+
+/* HEADER — Žlica & začin */
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap');
 
@@ -15,7 +13,8 @@
   --header-line: #eadfd4;
 }
 
-/* Header shell */
+/* HEADER */
+
 .recipe-header {
   position: sticky;
   top: 0;
@@ -41,12 +40,13 @@
   gap: 28px;
 }
 
-/* Brand */
+/* LOGO */
+
 .recipe-brand {
-  padding: 15px;
   display: inline-flex;
   align-items: center;
   gap: 11px;
+  padding: 15px;
   flex-shrink: 0;
   color: var(--header-ink);
   text-decoration: none;
@@ -82,7 +82,6 @@
 }
 
 .recipe-brand-name > span {
-  display: inline;
   color: var(--header-sage);
 }
 
@@ -95,7 +94,8 @@
   letter-spacing: 1.8px;
 }
 
-/* Desktop navigation */
+/* GLAVNA NAVIGACIJA */
+
 .recipe-nav-menu {
   display: flex;
   align-items: center;
@@ -137,8 +137,175 @@
   transform: scaleX(1);
 }
 
+/* STRELICA PADAJUĆIH IZBORNIKA */
 
-/* Mobile menu button */
+.dropdown-arrow {
+  font-size: 1.1rem;
+  transition: transform .2s ease;
+}
+
+/* IZBORNIK RECEPTI */
+
+.recipe-dropdown {
+  position: relative;
+}
+
+.recipe-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.recipe-dropdown:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.recipe-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  width: 245px;
+  padding: 12px;
+  border: 1px solid rgba(53, 72, 59, .12);
+  border-radius: 10px;
+  background: #F7F1E5;
+  box-shadow: 0 12px 30px rgba(35, 55, 40, .18);
+}
+
+.recipe-dropdown:hover .recipe-dropdown-menu,
+.recipe-dropdown:focus-within .recipe-dropdown-menu {
+  display: block;
+}
+
+.recipe-dropdown-group {
+  padding: 7px 5px;
+}
+
+.recipe-dropdown-main {
+  display: block;
+  padding: 7px 9px;
+  border-radius: 5px;
+  color: #35483B;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .2s ease;
+}
+
+.recipe-dropdown-main:hover {
+  color: #A95F42;
+  background: #EEE6D6;
+}
+
+.recipe-dropdown-subcategories {
+  display: flex;
+  flex-direction: column;
+  margin: 3px 0 0 12px;
+  padding-left: 12px;
+  border-left: 2px solid #D98B65;
+}
+
+.recipe-dropdown-subcategories a {
+  padding: 6px 8px;
+  border-radius: 4px;
+  color: #657568;
+  font-size: .9rem;
+  text-decoration: none;
+  transition: all .2s ease;
+}
+
+.recipe-dropdown-subcategories a:hover {
+  padding-left: 13px;
+  color: #A95F42;
+  background: #EEE6D6;
+}
+
+.recipe-dropdown-divider {
+  height: 1px;
+  margin: 8px 4px;
+  background: rgba(53, 72, 59, .15);
+}
+
+.recipe-dropdown-all {
+  display: block;
+  padding: 9px;
+  color: #A95F42;
+  font-size: .9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.recipe-dropdown-all:hover {
+  color: #7D432F;
+}
+
+/* IZBORNIK PRIJAVA / REGISTRACIJA */
+
+.account-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.account-dropdown-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--header-sage-dark);
+  color: var(--header-cream);
+  font-family: "Lato", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+.account-dropdown-button:hover {
+  background: var(--header-sage);
+}
+
+.account-dropdown.is-open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.account-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 1000;
+  display: none;
+  min-width: 170px;
+  padding: 8px;
+  border: 1px solid var(--header-line);
+  border-radius: 10px;
+  background: var(--header-cream);
+  box-shadow: 0 8px 24px rgba(48, 46, 41, .12);
+}
+
+.account-dropdown.is-open .account-dropdown-menu {
+  display: block;
+}
+
+.account-dropdown-menu a {
+  display: block;
+  padding: 11px 13px;
+  border-radius: 6px;
+  color: var(--header-ink);
+  font-size: 14px;
+  text-decoration: none;
+  transition: background .2s ease, color .2s ease;
+}
+
+.account-dropdown-menu a:hover {
+  background: var(--header-apricot-light);
+  color: var(--header-sage-dark);
+}
+
+/* MOBILNI HAMBURGER GUMB */
+
 .recipe-menu-toggle {
   display: none;
   width: 43px;
@@ -172,7 +339,8 @@
   transform: translateY(-6px) rotate(-45deg);
 }
 
-/* Tablet and mobile */
+/* TABLET I MOBITELI */
+
 @media (max-width: 760px) {
   .recipe-nav-container {
     width: calc(100% - 32px);
@@ -227,157 +395,64 @@
     color: var(--header-sage);
   }
 
+  /* MOBILNI PODIZBORNIK RECEPTI */
+
+  .recipe-dropdown {
+    width: 100%;
+  }
+
+  .recipe-dropdown-trigger {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .recipe-dropdown-menu {
+    position: static;
+    display: none;
+    width: 100%;
+    margin: 5px 0 12px;
+    padding: 8px;
+    border: none;
+    border-left: 2px solid #D98B65;
+    border-radius: 0;
+    background: rgba(247, 241, 229, .65);
+    box-shadow: none;
+  }
+
+  .recipe-dropdown.submenu-open .recipe-dropdown-menu {
+    display: block;
+  }
+
+  .recipe-dropdown.submenu-open .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  /* MOBILNI IZBORNIK RAČUNA */
+
+  .account-dropdown {
+    width: 100%;
+  }
+
+  .account-dropdown-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .account-dropdown-menu {
+    position: static;
+    width: 100%;
+    margin-top: 8px;
+    box-shadow: none;
+  }
 }
 
-/* Accessibility */
+/* PRISTUPAČNOST */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     transition-duration: .01ms !important;
   }
-}
-
-/* PADAJUĆI IZBORNIK RECEPTI */
-
-.recipe-dropdown {
-  position: relative;
-}
-
-.recipe-dropdown-trigger {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.dropdown-arrow {
-  font-size: 1.1rem;
-  transition: transform 0.2s ease;
-}
-
-.recipe-dropdown:hover .dropdown-arrow {
-  transform: rotate(180deg);
-}
-
-.recipe-dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  display: none;
-  width: 245px;
-  padding: 12px;
-  border: 1px solid rgba(53, 72, 59, 0.12);
-  border-radius: 10px;
-  background: #F7F1E5;
-  box-shadow: 0 12px 30px rgba(35, 55, 40, 0.18);
-}
-
-.recipe-dropdown:hover .recipe-dropdown-menu,
-.recipe-dropdown:focus-within .recipe-dropdown-menu {
-  display: block;
-}
-
-.recipe-dropdown-group {
-  padding: 7px 5px;
-}
-
-.recipe-dropdown-main {
-  display: block;
-  padding: 7px 9px;
-  border-radius: 5px;
-  color: #35483B;
-  font-weight: 700;
-  text-decoration: none;
-  transition: background 0.2s ease;
-}
-
-.recipe-dropdown-main:hover {
-  color: #A95F42;
-  background: #EEE6D6;
-}
-
-.recipe-dropdown-subcategories {
-  display: flex;
-  flex-direction: column;
-  margin: 3px 0 0 12px;
-  padding-left: 12px;
-  border-left: 2px solid #D98B65;
-}
-
-.recipe-dropdown-subcategories a {
-  padding: 6px 8px;
-  border-radius: 4px;
-  color: #657568;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.recipe-dropdown-subcategories a:hover {
-  padding-left: 13px;
-  color: #A95F42;
-  background: #EEE6D6;
-}
-
-.recipe-dropdown-divider {
-  height: 1px;
-  margin: 8px 4px;
-  background: rgba(53, 72, 59, 0.15);
-}
-
-.recipe-dropdown-all {
-  display: block;
-  padding: 9px;
-  color: #A95F42;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.recipe-dropdown-all:hover {
-  color: #7D432F;
-}
-
-/* MOBILNI PODIZBORNIK RECEPTI */
-
-@media (max-width: 760px) {
-
-    .recipe-dropdown {
-        width: 100%;
-    }
-
-    /* Podizbornik je zatvoren dok korisnik ne klikne Recepti */
-
-    .recipe-dropdown-menu {
-        position: static;
-        display: none;
-        width: 100%;
-        margin: 5px 0 12px;
-        padding: 8px;
-        border: none;
-        border-left: 2px solid #D98B65;
-        border-radius: 0;
-        background: rgba(247, 241, 229, 0.65);
-        box-shadow: none;
-    }
-
-    /* Otvaranje podizbornika nakon prvog klika */
-
-    .recipe-dropdown.submenu-open .recipe-dropdown-menu {
-        display: block;
-    }
-
-    .recipe-dropdown-trigger {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    /* Strelica prati stanje podizbornika */
-
-    .recipe-dropdown.submenu-open .dropdown-arrow {
-        transform: rotate(180deg);
-    }
-
 }
