@@ -11,6 +11,9 @@ function Header() {
   const [recipeSubmenuOpen, setRecipeSubmenuOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
 
+  const token = localStorage.getItem("pikachu");
+  const nadimak = localStorage.getItem("nadimak");
+
   // Zatvara sve navigacijske izbornike
   const closeMenu = () => {
     setMenuOpen(false);
@@ -39,6 +42,12 @@ const getSubcategories = (parentID) => {
     (category) => Number(category.parent) === Number(parentID)
   );
   };
+
+const handleLogout = () => {
+  localStorage.removeItem("pikachu");
+  localStorage.removeItem("nadimak");
+  window.location.href = "/";
+}
 
   return (
     <header className="recipe-header">
@@ -177,27 +186,49 @@ const getSubcategories = (parentID) => {
               >
                 O nama
             </NavLink>
-                <div className={`account-dropdown ${accountMenuOpen ? "is-open" : ""}`}>
-                  <button
-                    type="button"
-                    className="account-dropdown-button"
-                    onClick={() => setAccountMenuOpen(!accountMenuOpen)}
-                    aria-expanded={accountMenuOpen}
-                  >
-                    Prijavi se
-                    <span className="dropdown-arrow">⌄</span>
-                  </button>
+            {token && nadimak ? (
+              <div className={`account-dropdown ${accountMenuOpen ? "is-open" : ""}`}>  
+                          <button
+                            type="button"
+                            className="account-dropdown-button"
+                            onClick={() => setAccountMenuOpen(!accountMenuOpen)}
+                            aria-expanded={accountMenuOpen}
+                          >
+                              {nadimak}
+                            <span className="dropdown-arrow">⌄</span>
+                          </button>
 
-                  <div className="account-dropdown-menu">
-                    <Link to="/prijava" onClick={closeMenu}>
-                      Prijava
-                    </Link>
+                          <div className="account-dropdown-menu">
+                            <Link to="/profil" onClick={closeMenu}>
+                              Profil
+                            </Link>
+                            <Link to="/" onClick={handleLogout}>
+                              Odjava
+                            </Link>
+                          </div>
+                        </div>
+                               ) : (
+                        <div className={`account-dropdown ${accountMenuOpen ? "is-open" : ""}`}>
+                          <button
+                            type="button"
+                            className="account-dropdown-button"
+                            onClick={() => setAccountMenuOpen(!accountMenuOpen)}
+                            aria-expanded={accountMenuOpen}
+                          >
+                              Prijavi se
+                            <span className="dropdown-arrow">⌄</span>
+                          </button>
 
-                    <Link to="/registracija" onClick={closeMenu}>
-                      Registracija
-                    </Link>
-                  </div>
-                </div>
+                          <div className="account-dropdown-menu">
+                            <Link to="/prijava" onClick={closeMenu}>
+                              Prijava
+                            </Link>
+                            <Link to="/registracija" onClick={closeMenu}>
+                              Registracija
+                            </Link>
+                          </div>
+                        </div>
+                               )};       
           </div>
         </div>
       </nav>
