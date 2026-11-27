@@ -1,9 +1,13 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "./Dashboard.css";
 
 function Registracija() {
+    const navigate = useNavigate();
+    const { login } = useAuth();
+
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -13,10 +17,16 @@ function Registracija() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [message, setMessage] = useState("");
+    const [messageType, setMessageType] = useState("");
+    const [loading, setLoading] = useState(false);
 
     // Prvo slovo veliko, ostala slova mala
     const formatName = (value) => {
-        const lettersOnly = value.replace(/[^a-zA-ZčćžšđČĆŽŠĐ\s-]/g, "");
+        const lettersOnly = value.replace(
+            /[^a-zA-ZčćžšđČĆŽŠĐ\s-]/g,
+            ""
+        );
+
         return lettersOnly
             .toLocaleLowerCase("hr-HR")
             .replace(/(^|[\s-])(\p{L})/gu, (match, separator, letter) =>
@@ -24,22 +34,124 @@ function Registracija() {
             );
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setMessage("");
+        setMessageType("");
+
+        // Provjera podudaranja lozinki
         if (password !== confirmPassword) {
             setMessage("Lozinke se ne podudaraju.");
+            setMessageType("error");
             return;
         }
 
+        // Provjera prihvaćanja uvjeta
         if (!acceptedTerms) {
             setMessage("Morate prihvatiti uvjete korištenja.");
+            setMessageType("error");
             return;
         }
 
-        setMessage(
-            "Podaci su ispravno uneseni. Za stvarnu registraciju potrebno je povezati obrazac s WordPress backendom."
-        );
+        setLoading(true);
+
+        try {
+            // REGISTRACIJA
+            const response = await fetch(
+                "https://front6.edukacija.online/backend/wp-json/custom/v1/register",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        username: email,
+                        password: password,
+                        first_name: firstName,
+                        last_name: lastName,
+                        email: email,
+                    }),
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                const serverMessage = String(
+                    data.message || data.error || ""
+                );
+
+                const normalizedMessage = serverMessage.toLowerCase();
+
+                // Prepoznavanje već registrirane email adrese
+                const emailAlreadyExists =
+                    normalizedMessage.includes("email already exists") ||
+                    normalizedMessage.includes("email already registered") ||
+                    normalizedMessage.includes("email is already registered") ||
+                    normalizedMessage.includes("user already exists") ||
+                    normalizedMessage.includes("username already exists") ||
+                    normalizedMessage.includes("already taken") ||
+                    normalizedMessage.includes("already in use") ||
+                    normalizedMessage.includes("already registered") ||
+                    normalizedMessage.includes("email_exists") ||
+                    normalizedMessage.includes("existing user") ||
+                    normalizedMessage.includes("korisnik već postoji") ||
+                    normalizedMessage.includes("email već postoji") ||
+                    normalizedMessage.includes("email je već registriran") ||
+                    normalizedMessage.includes("email je već registrovan") ||
+                    normalizedMessage.includes(
+                        "korisničko ime, e-mail ili lozinka su obavezni"
+                    );
+
+                const errorMessage = emailAlreadyExists
+                    ? "Ova email adresa već je registrirana. Pokušajte se prijaviti."
+                    : serverMessage ||
+                      "Registracija nije uspjela. Pokušajte ponovno.";
+
+                setMessage(errorMessage);
+                setMessageType("error");
+
+                console.error("Greška pri registraciji:", data);
+            } else {
+                console.log("Registracija uspješna:", data);
+
+                try {
+                    await login(email, password, email);
+                } catch (loginError) {
+                    console.error(
+                        "Automatska prijava nakon registracije nije uspjela:",
+                        loginError
+                    );
+                    setMessage(
+                        "Registracija je uspješna, ali automatska prijava nije uspjela. Molimo prijavite se ručno."
+                    );
+                    setMessageType("error");
+                    return;
+                }
+
+                navigate("/profil", {
+                    state: {
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        profileSetup: true,
+                    },
+                });
+            }
+        } catch (error) {
+            console.error(
+                "Greška prilikom povezivanja s poslužiteljem:",
+                error
+            );
+
+            setMessage(
+                "Došlo je do greške pri povezivanju s poslužiteljem. Pokušajte ponovno."
+            );
+            setMessageType("error");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -77,7 +189,7 @@ function Registracija() {
                     </p>
                 </div>
 
-                {/* DESNA STRANA */}
+                {/* DESNA STRANA – OBRAZAC */}
                 <div className="login-form-panel registration-form-panel">
 
                     <div className="login-form-heading">
@@ -180,6 +292,11 @@ function Registracija() {
                                 onClick={() =>
                                     setShowPassword((value) => !value)
                                 }
+                                aria-label={
+                                    showPassword
+                                        ? "Sakrij lozinku"
+                                        : "Prikaži lozinku"
+                                }
                             >
                                 {showPassword ? "Sakrij" : "Prikaži"}
                             </button>
@@ -193,7 +310,9 @@ function Registracija() {
                         <div className="login-password-field">
                             <input
                                 id="register-confirm-password"
-                                type={showConfirmPassword ? "text" : "password"}
+                                type={
+                                    showConfirmPassword ? "text" : "password"
+                                }
                                 value={confirmPassword}
                                 onChange={(e) =>
                                     setConfirmPassword(e.target.value)
@@ -209,14 +328,20 @@ function Registracija() {
                                 onClick={() =>
                                     setShowConfirmPassword((value) => !value)
                                 }
+                                aria-label={
+                                    showConfirmPassword
+                                        ? "Sakrij lozinku"
+                                        : "Prikaži lozinku"
+                                }
                             >
                                 {showConfirmPassword ? "Sakrij" : "Prikaži"}
                             </button>
                         </div>
 
                         {/* UVJETI KORIŠTENJA */}
-                        <label className="login-remember registration-terms">
+                        <div className="login-remember registration-terms">
                             <input
+                                id="accept-terms"
                                 type="checkbox"
                                 checked={acceptedTerms}
                                 onChange={(e) =>
@@ -225,32 +350,54 @@ function Registracija() {
                                 required
                             />
 
+                            <label htmlFor="accept-terms">
+                                Prihvaćam
+                            </label>
+
                             <span>
-                                Prihvaćam{" "}
-                                <Link to="/uvjeti-koristenja" className="me-1">
-                                    uvjete korištenja 
+                                <Link
+                                    to="/uvjeti-koristenja"
+                                    className="me-1"
+                                >
+                                    uvjete korištenja
                                 </Link>
-                                     i  
-                                <Link to="/privatnost" className="ms-1">
-                                     pravila privatnosti
+                                {" i "}
+                                <Link
+                                    to="/privatnost"
+                                    className="ms-1"
+                                >
+                                    pravila privatnosti
                                 </Link>.
                             </span>
-                        </label> 
+                        </div>
+
+                        {/* PORUKA */}
+                        {message && (
+                            <div
+                                className={`alert ${
+                                    messageType === "success"
+                                        ? "alert-success"
+                                        : "alert-danger"
+                                }`}
+                                role="alert"
+                            >
+                                {message}
+                            </div>
+                        )}
 
                         {/* GUMB */}
                         <button
                             className="login-submit"
                             type="submit"
+                            disabled={loading}
                         >
-                            Registriraj se
-                            <span aria-hidden="true">→</span>
+                            {loading
+                                ? "Registracija u tijeku..."
+                                : "Registriraj se"}
+                            {!loading && (
+                                <span aria-hidden="true"> →</span>
+                            )}
                         </button>
-
-                        {message && (
-                            <p className="login-message" role="status">
-                                {message}
-                            </p>
-                        )}
 
                     </form>
 

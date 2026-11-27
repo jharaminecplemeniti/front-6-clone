@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 import "./Header.css";
 
 const API_URL =
@@ -10,9 +11,7 @@ function Header() {
   const [categories, setCategories] = useState([]);
   const [recipeSubmenuOpen, setRecipeSubmenuOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
-
-  const token = localStorage.getItem("pikachu");
-  const nadimak = localStorage.getItem("nadimak");
+  const { isAuthenticated, nickname, logout } = useAuth();
 
   // Zatvara sve navigacijske izbornike
   const closeMenu = () => {
@@ -42,12 +41,6 @@ const getSubcategories = (parentID) => {
     (category) => Number(category.parent) === Number(parentID)
   );
   };
-
-const handleLogout = () => {
-  localStorage.removeItem("pikachu");
-  localStorage.removeItem("nadimak");
-  window.location.href = "/";
-}
 
   return (
     <header className="recipe-header">
@@ -186,7 +179,7 @@ const handleLogout = () => {
               >
                 O nama
             </NavLink>
-            {token && nadimak ? (
+            {isAuthenticated && nickname ? (
               <div className={`account-dropdown ${accountMenuOpen ? "is-open" : ""}`}>  
                           <button
                             type="button"
@@ -194,7 +187,7 @@ const handleLogout = () => {
                             onClick={() => setAccountMenuOpen(!accountMenuOpen)}
                             aria-expanded={accountMenuOpen}
                           >
-                              {nadimak}
+                              {nickname}
                             <span className="dropdown-arrow">⌄</span>
                           </button>
 
@@ -202,7 +195,7 @@ const handleLogout = () => {
                             <Link to="/profil" onClick={closeMenu}>
                               Profil
                             </Link>
-                            <Link to="/" onClick={handleLogout}>
+                            <Link to="/" onClick={logout}>
                               Odjava
                             </Link>
                           </div>

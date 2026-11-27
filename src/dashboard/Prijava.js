@@ -1,24 +1,23 @@
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "./Dashboard.css";
 
 function Prijava() {
+    const navigate = useNavigate();
+    const { isAuthenticated, login } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    // Provjera postojeće prijave
     useEffect(() => {
-        const token = localStorage.getItem("pikachu");
-        const nadimak = localStorage.getItem("nadimak");
-
-        if (token && nadimak) {
-            window.location.href = "/";
+        if (isAuthenticated) {
+            navigate("/", { replace: true });
         }
-    }, []);
+    }, [isAuthenticated, navigate]);
 
     // Obrada prijave
     const handleSubmit = async (e) => {
@@ -28,42 +27,12 @@ function Prijava() {
         setLoading(true);
 
         try {
-            const response = await fetch(
-                "https://front6.edukacija.online/backend/wp-json/jwt-auth/v1/token",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        username: email,
-                        password: password
-                    })
-                }
-            );
-
-            const data = await response.json();
-
-            if (response.ok) {
-                localStorage.setItem("pikachu", data.token);
-
-                // Spremanje nadimka ako ga API vraća
-                if (data.user_nicename) {
-                    localStorage.setItem("nadimak", data.user_nicename);
-                }
-
-                window.location.href = "/";
-            } else {
-                setError(
-                    data.message || "Prijava nije uspjela. Provjerite podatke."
-                );
-            }
+            await login(email, password);
+            navigate("/", { replace: true });
         } catch (err) {
             console.error("Greška prilikom prijave:", err);
 
-            setError(
-                "Došlo je do pogreške prilikom povezivanja s poslužiteljem. Pokušajte ponovno."
-            );
+            setError(err.message || "Prijava nije uspjela. Pokušajte ponovno.");
         } finally {
             setLoading(false);
         }

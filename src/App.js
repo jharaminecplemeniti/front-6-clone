@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
+import { AuthProvider } from './context/AuthContext';
 
 // Components
 import Header from './components/Header';
@@ -27,32 +28,36 @@ import ReceptiSingle from './pages/ReceptiSingle';
 // Dashboard
 import Prijava from './dashboard/Prijava';
 import Registracija from './dashboard/Registracija';
+import Profil from './dashboard/Profil';
 
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/works" element={<Works />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path='/blog/:slug' element={<BlogSingle />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/Posts" element={<Posts />} />
-        <Route path="/Users" element={<Users />} />
-        <Route path='/recipes' element={<Recepti />} />
-        <Route path='/recipes/:slug' element={<ReceptiSingle />} />
-        
-        <Route path="/privatnost" element={<Page pageID="557" />} />
-        <Route path="/kolacici" element={<Page pageID="560" />} />
-        <Route path="/o_nama" element={<Page pageID="576" />} />
-        <Route path="/prijava" element={<Prijava />} />
-        <Route path="/registracija" element={<Registracija />} />
-      </Routes>
+      <AuthProvider>
+        <Header />
 
-      <Footer />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/works" element={<Works />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path='/blog/:slug' element={<BlogSingle />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/Posts" element={<Posts />} />
+          <Route path="/Users" element={<Users />} />
+          <Route path='/recipes' element={<Recepti />} />
+          <Route path='/recipes/:slug' element={<ReceptiSingle />} />
+
+          <Route path="/privatnost" element={<Page pageID="557" />} />
+          <Route path="/kolacici" element={<Page pageID="560" />} />
+          <Route path="/o_nama" element={<Page pageID="576" />} />
+          <Route path="/prijava" element={<Prijava />} />
+          <Route path="/registracija" element={<Registracija />} />
+          <Route path="/profil" element={<Profil />} />
+        </Routes>
+
+        <Footer />
+      </AuthProvider>
     </BrowserRouter>
   );
 }

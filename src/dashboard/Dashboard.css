@@ -464,3 +464,422 @@
 .registration-terms a:hover {
     text-decoration: underline;
 }
+
+
+/* ==========================================
+   MOJ PROFIL — Žlica & začin
+========================================== */
+
+.profile-page {
+    min-height: 100vh;
+    padding: 60px 20px;
+    background: #87b88e;
+    color: #302e29;
+    font-family: "Lato", Arial, sans-serif;
+}
+
+.profile-container {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 45px 55px;
+    border-radius: 24px;
+    background: #fffaf4;
+    box-shadow: 0 15px 45px rgba(53, 72, 59, 0.13);
+}
+
+/* NASLOV */
+
+.profile-header {
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.profile-kicker {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #78866b;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+}
+
+.profile-header h1 {
+    margin: 0 0 12px;
+    color: #455541;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.profile-header p {
+    margin: 0;
+    color: #7b7a70;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* PROFILNA SLIKA */
+
+.profile-avatar-section {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 38px;
+    padding: 25px;
+    border-radius: 16px;
+    background: #f7f1e5;
+}
+
+.profile-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 115px;
+    height: 115px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 4px solid #fffaf4;
+    border-radius: 50%;
+    background: #78866b;
+    box-shadow: 0 4px 14px rgba(53, 72, 59, 0.12);
+}
+
+.profile-avatar > span {
+    color: #fffaf4;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-avatar-actions {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-image-button {
+    display: inline-block;
+    padding: 11px 18px;
+    border-radius: 8px;
+    background: #455541;
+    color: #fffaf4;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.profile-image-button:hover {
+    background: #78866b;
+    transform: translateY(-1px);
+}
+
+.profile-remove-image {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #a95f42;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.profile-remove-image:hover {
+    color: #7d432f;
+    text-decoration: underline;
+}
+
+.profile-avatar-actions p {
+    margin: 0;
+    color: #8a897b;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* NASLOVI SEKCIJA */
+
+.profile-section-heading {
+    margin-bottom: 22px;
+}
+
+.profile-section-heading h2 {
+    margin: 0 0 8px;
+    color: #455541;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.profile-section-heading p {
+    margin: 0;
+    color: #858277;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.profile-password-heading {
+    margin-top: 38px;
+}
+
+/* OBRAZAC */
+
+.profile-form {
+    width: 100%;
+}
+
+.profile-fields-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.profile-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+}
+
+.profile-field label {
+    margin-bottom: 9px;
+    color: #455541;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.profile-field input {
+    width: 100%;
+    min-height: 49px;
+    padding: 0 15px;
+    border: 1px solid #e5ded3;
+    border-radius: 8px;
+    outline: none;
+    background: #ffffff;
+    color: #302e29;
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-field input::placeholder {
+    color: #b0ada3;
+}
+
+.profile-field input:focus {
+    border-color: #78866b;
+    box-shadow: 0 0 0 3px rgba(120, 134, 107, 0.13);
+}
+
+.profile-field small {
+    margin-top: 8px;
+    color: #858277;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* POLJE LOZINKE */
+
+.profile-password-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.profile-password-field input {
+    padding-right: 80px;
+}
+
+.profile-password-field button {
+    position: absolute;
+    right: 12px;
+    border: none;
+    background: transparent;
+    color: #78866b;
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.profile-password-field button:hover {
+    color: #455541;
+}
+
+/* PORUKE */
+
+.profile-form .alert {
+    margin: 5px 0 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* GUMBI */
+
+.profile-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.profile-save-button,
+.profile-cancel-button {
+    min-height: 48px;
+    padding: 0 22px;
+    border-radius: 8px;
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.profile-save-button {
+    border: 1px solid #455541;
+    background: #455541;
+    color: #fffaf4;
+}
+
+.profile-save-button:hover {
+    border-color: #78866b;
+    background: #78866b;
+    transform: translateY(-1px);
+}
+
+.profile-cancel-button {
+    border: 1px solid #dcd4c7;
+    background: transparent;
+    color: #657568;
+}
+
+.profile-cancel-button:hover {
+    border-color: #78866b;
+    background: #f7f1e5;
+}
+
+/* POVRATAK */
+
+.profile-back {
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid #eadfd4;
+    text-align: center;
+}
+
+.profile-back a {
+    color: #a95f42;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.profile-back a:hover {
+    color: #7d432f;
+}
+
+/* RESPONSIVE — TABLETI */
+
+@media (max-width: 700px) {
+    .profile-page {
+        padding: 35px 16px;
+    }
+
+    .profile-container {
+        padding: 35px 28px;
+    }
+
+    .profile-header h1 {
+        font-size: 34px;
+    }
+
+    .profile-avatar {
+        width: 95px;
+        height: 95px;
+    }
+
+    .profile-avatar > span {
+        font-size: 40px;
+    }
+
+    .profile-section-heading h2 {
+        font-size: 22px;
+    }
+}
+
+/* RESPONSIVE — MOBITELI */
+
+@media (max-width: 500px) {
+    .profile-page {
+        padding: 22px 12px;
+    }
+
+    .profile-container {
+        padding: 28px 18px;
+        border-radius: 17px;
+    }
+
+    .profile-header {
+        margin-bottom: 27px;
+    }
+
+    .profile-header h1 {
+        font-size: 30px;
+    }
+
+    .profile-header p {
+        font-size: 14px;
+    }
+
+    .profile-avatar-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 18px;
+        padding: 22px 15px;
+    }
+
+    .profile-avatar-actions {
+        align-items: center;
+    }
+
+    .profile-fields-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .profile-field {
+        margin-bottom: 19px;
+    }
+
+    .profile-password-heading {
+        margin-top: 28px;
+    }
+
+    .profile-form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .profile-save-button,
+    .profile-cancel-button {
+        width: 100%;
+    }
+}
+
+/* SMANJENO KRETANJE */
+
+@media (prefers-reduced-motion: reduce) {
+    .profile-page *,
+    .profile-page *::before,
+    .profile-page *::after {
+        transition-duration: 0.01ms !important;
+    }
+}
